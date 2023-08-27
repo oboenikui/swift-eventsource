@@ -299,6 +299,7 @@ class EventSourceDelegate: NSObject, URLSessionDataDelegate {
         // swiftlint:disable:next force_cast
         let httpResponse = response as! HTTPURLResponse
         let statusCode = httpResponse.statusCode
+        config.handler.onResponse(httpResponse: httpResponse)
         if (200..<300).contains(statusCode) && statusCode != 204 {
             reconnectionTimer.connectedTime = Date()
             readyState = .open

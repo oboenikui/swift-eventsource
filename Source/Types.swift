@@ -54,6 +54,11 @@ public protocol EventHandler {
 
     /// EventSource calls this method when the stream connection has been closed.
     func onClosed()
+    
+    /**
+     EventSource calls this method when http response has been received.
+     */
+    func onResponse(httpResponse: HTTPURLResponse)
 
     /**
      EventSource calls this method when it has received a new event from the stream.
@@ -79,6 +84,10 @@ public protocol EventHandler {
      - Parameter error: The error received.
      */
     func onError(error: Error)
+}
+
+extension EventHandler {
+    func onResponse(httpResponse: HTTPURLResponse) {}
 }
 
 /// Enum values representing the states of an EventSource
